@@ -10,10 +10,9 @@ def animate_ruleset(individual, steps=100):
     :param steps: Number of simulation steps to animate.
     """
     # Create an initial state
-    ruleset, initial_state = individual
-    ruleset_dict = {'survive': [i for i in range(9) if ruleset[i] == 1], 'birth': [3]}
-
-    # convert from a list back to dict
+    (ruleset, initial_state), _ = individual
+   
+    #ruleset = list(ruleset)  # Flatten the numpy array and convert to list
     ruleset_dict = {'survive': [i for i in range(9) if ruleset[i] == 1], 'birth': [3]}
     # Simulate the Game of Life with the given ruleset and initial state for a certain number of steps
     final_state, states = main.simulate_game_of_life(initial_state, ruleset_dict, steps)

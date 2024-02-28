@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 
 # main.py is set up with the genetic algorithm and necessary functions
-def genetic_algorithm_with_top_n_tracking(population_size=10, num_generations=10, top_n=3):
+def genetic_algorithm_with_top_n_tracking(population_size=10, num_generations=3, top_n=3):
     population = main.initialize_population(population_size, grid_size=25)
     top_n_rulesets = []  # This will store tuples of (ruleset, score)
 
