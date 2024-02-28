@@ -3,14 +3,15 @@ import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 import main  # Import the GA module you've created
 
-def animate_ruleset(ruleset, steps=100):
+def animate_ruleset(individual, steps=100):
     """
     Create an animation for a given ruleset.
     :param ruleset: The ruleset to simulate and animate.
     :param steps: Number of simulation steps to animate.
     """
     # Create an initial state
-    initial_state = np.random.randint(2, size=(10, 10))
+    ruleset, initial_state = individual
+    ruleset_dict = {'survive': [i for i in range(9) if ruleset[i] == 1], 'birth': [3]}
 
     # convert from a list back to dict
     ruleset_dict = {'survive': [i for i in range(9) if ruleset[i] == 1], 'birth': [3]}
@@ -38,8 +39,8 @@ def visualize_top_n_rulesets(n=5, top_rulesets=[]):
     :param top_rulesets: The best performing rulesets in GoL from run.py
     """
 
-    for i, (ruleset, score) in enumerate(top_rulesets):
-        ani = animate_ruleset(ruleset)
+    for i, individual in enumerate(top_rulesets):
+        ani = animate_ruleset(individual)
         ani.save(f"ruleset_{i+1}_animation.gif", writer='imagemagick')
         #print(f"Ruleset {i+1} animation saved as ruleset_{i+1}_animation.gif")
 
