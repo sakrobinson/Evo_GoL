@@ -1,5 +1,9 @@
 import numpy as np
 import random
+import main
+import vis
+import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation
 
 # main.py is set up with the genetic algorithm and necessary functions
 def genetic_algorithm_with_top_n_tracking(population_size=10, num_generations=50, top_n=5):
@@ -33,4 +37,6 @@ if __name__ == "__main__":
     top_n_rulesets = genetic_algorithm_with_top_n_tracking(top_n=5)
     for i, (ruleset, score) in enumerate(top_n_rulesets):
         print(f"Top {i+1} Ruleset with score {score}: {ruleset}")
-        # You can now pass each ruleset to your visualization/animation function
+        # now pass each ruleset to your visualization/animation function
+    
+    vis.visualize_top_n_rulesets(1, top_n_rulesets)

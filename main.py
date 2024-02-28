@@ -50,9 +50,9 @@ def calculate_diversity(states):
 
 def evaluate(individual):
     # Convert individual to ruleset format
-    ruleset = {'survive': [i for i in range(9) if individual[i] == 1], 'birth': [3]} # Simplified ruleset
-    initial_state = np.random.randint(2, size=(10, 10))
-    _, states = simulate_game_of_life(initial_state, ruleset, steps=10)
+    ruleset = {'survive': [i for i in range(9) if individual[i] == 1], 'birth': [3]} # Simplified ruleset for GoL
+    initial_state = np.random.randint(2, size=(10, 10)) # hard coded parameters for now, size
+    _, states = simulate_game_of_life(initial_state, ruleset, steps=10) # hard coded parameters for now, steps
     stability = calculate_stability(states)
     complexity = calculate_complexity(states)
     diversity = calculate_diversity(states)
@@ -69,7 +69,7 @@ def tournament_selection(population, scores, k=3):
 def crossover(parent1, parent2, crossover_rate):
     if random.random() < crossover_rate:
         point = random.randint(1, len(parent1)-2)
-        return parent1[:point] + parent2[point:], parent2[:point] + parent1[point:]
+        return np.concatenate((parent1[:point], parent2[point:])), np.concatenate((parent2[:point], parent1[point:]))
     return parent1, parent2
 
 def mutate(individual, mutation_rate):
